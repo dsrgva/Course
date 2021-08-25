@@ -12,6 +12,24 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+find_package(Doxygen)
+
+if(DOXYGEN_FOUND)
+
+        set(DOXYGEN ${CMAKE_SOURCE_DIR}/doc/Doxyfile)
+
+        message("Doxygen build started")
+
+        add_custom_target(
+                docs ALL
+                COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN}
+                COMMENT "Generating API documentation with Doxygen"
+                VERBATIM
+                WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/doc
+         )
+
+endif()
+
 find_package(Qt5 COMPONENTS Widgets LinguistTools Sql REQUIRED)
 
 add_subdirectory(source)
@@ -35,6 +53,7 @@ install(DIRECTORY ${QT_MAIN_DIR}/plugins/sqldrivers/
 install(DIRECTORY ${QT_MAIN_DIR}/plugins/platforms/
                 DESTINATION ./plugins/platforms USE_SOURCE_PERMISSIONS)
 
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/documentation DESTINATION ${PROJECT_BINARY_DIR})
 
 install(FILES ${CMAKE_SOURCE_DIR}/database/mydb.db DESTINATION .)
 
