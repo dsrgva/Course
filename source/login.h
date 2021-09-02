@@ -37,7 +37,7 @@ public:
 */
     bool connOpen(){
         new_db = QSqlDatabase::addDatabase("QSQLITE");
-        new_db.setDatabaseName("C:/Project/database/mydb.db");
+        new_db.setDatabaseName("./database/mydb.db");
 
         if(!new_db.open()){
             qDebug()<<("В открытии базы данных произошла ошибка");
