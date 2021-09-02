@@ -16,7 +16,7 @@ find_package(Doxygen)
 
 if(DOXYGEN_FOUND)
 
-        set(DOXYGEN ${CMAKE_SOURCE_DIR}/doc/Doxyfile)
+        set(DOXYGEN ${CMAKE_SOURCE_DIR}/documentation/Doxyfile)
 
         message("Doxygen build started")
 
@@ -25,7 +25,7 @@ if(DOXYGEN_FOUND)
                 COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN}
                 COMMENT "Generating API documentation with Doxygen"
                 VERBATIM
-                WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/doc
+                WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/documentation
          )
 
 endif()
